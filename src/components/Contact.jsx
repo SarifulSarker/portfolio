@@ -17,21 +17,14 @@ import {
 
 const ContactForm = () => {
   const icons = [
-    { icon: <FaCode />, color: "#333", url: "#" },
-    { icon: <FaBlogger />, color: "#00aced", url: "#" },
-    { icon: <FaGithub />, color: "#181717", url: "https://github.com/yourusername" },
-    { icon: <FaLinkedin />, color: "#0A66C2", url: "https://linkedin.com/in/yourusername" },
-    { icon: <FaEnvelope />, color: "#EA4335", url: "mailto:shahjalalshohag2014@gmail.com" },
-    { icon: <FaFacebook />, color: "#1877F2", url: "https://facebook.com/yourusername" },
-    { icon: <FaInstagram />, color: "#C13584", url: "https://instagram.com/yourusername" },
-    { icon: <FaDiscord />, color: "#5865F2", url: "https://discord.com/users/yourid" },
-    { icon: <FaSpotify />, color: "#1DB954", url: "https://spotify.com" },
-    { icon: <FaTwitter />, color: "#1DA1F2", url: "https://twitter.com/yourusername" },
-    { icon: <FaExternalLinkAlt />, color: "#25D366", url: "#" },
+    { icon: <FaCode />, color: "#1F8ACB", url: "https://codeforces.com/profile/FailX" },
+    { icon: <FaGithub />, color: "#181717", url: "https://github.com/SarifulSarker" },
+    { icon: <FaLinkedin />, color: "#0A66C2", url: "https://linkedin.com/in/sariful-sarker-22961b210/" },
+    { icon: <FaEnvelope />, color: "#EA4335", url: "mailto:sarifulsarker19@gmail.com" },
   ];
 
   return (
-    <div className="bg-white py-20 px-6 md:px-16 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto min-h-screen">
+    <div id="contact" className="bg-white py-20 px-6 md:px-16 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto min-h-screen">
       {/* Left Section */}
       <div className="md:w-3/5 space-y-8">
         <h1 className="text-5xl md:text-6xl font-bold text-gray-900">Contact Me</h1>

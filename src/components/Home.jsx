@@ -20,13 +20,12 @@ const Home = () => {
           </motion.h1>
 
           <motion.p
-            className="text-[15px] md:text-[27px] text-gray-600 max-w-2xl"
+            className="text-[15px] md:text-[24px] text-gray-600 max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            Recent computer science graduate with a strong background in
-            competitive programming and problem-solving...
+            B.Sc in Computer Science and Engineering graduate from Uttara University, with experience building full-stack applications and a strong background in competitive programming and problem-solving.
           </motion.p>
 
           <motion.div
@@ -68,8 +67,8 @@ const Home = () => {
           </motion.div>
 
           <motion.a
-            href="/Shariful CV.pdf"
-            download
+            href={`${import.meta.env.BASE_URL}SharifulResume.pdf`}
+            download="SharifulResume.pdf"
             className="inline-block mt-6 px-6 py-3 bg-blue-700 text-white font-semibold rounded-xl shadow hover:bg-blue-800 transition cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
