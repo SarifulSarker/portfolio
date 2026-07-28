@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/portfolio/', // ✅ This is required for GitHub Pages
+  base: '/', // ✅ This is required for GitHub Pages
   plugins: [
     react(),
     tailwindcss(),
