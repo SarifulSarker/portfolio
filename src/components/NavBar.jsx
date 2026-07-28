@@ -1,22 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RiCloseLine, RiMenu2Line } from "@remixicon/react";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "Skills", href: "#skills" },
+    { name: "Experience", href: "#experience" },
+    { name: "Problem Solving", href: "#cp" },
+    { name: "Achievements", href: "#achievements" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" }
+  ];
 
   return (
-    <nav className="bg-white   fixed top-0 left-0 w-full z-50 shadow-md ">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">
-            Portfolio
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-350 ${
+      scrolled 
+        ? "bg-[#030014]/75 backdrop-blur-md border-b border-white/5 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.03)]" 
+        : "bg-transparent py-6"
+    }`}>
+      <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
+        <a href="#" className="flex items-center gap-2 group">
+          <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-200">
+            Shariful.dev
           </span>
         </a>
 
-        {/* Toggle Button */}
+        {/* Desktop Menu */}
+        <div className="hidden md:block">
+          <ul className="flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  className="relative text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200 py-1.5 px-1 group"
+                >
+                  {link.name}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300 group-hover:w-full" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Mobile Toggle Button */}
         <button
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="md:hidden inline-flex items-center justify-center p-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl focus:outline-none transition-colors duration-200"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? (
@@ -25,73 +69,27 @@ const NavBar = () => {
             <RiMenu2Line size={24} aria-hidden="true" />
           )}
         </button>
+      </div>
 
-        {/* Menu Items */}
-        <div
-          className={`${
-            menuOpen ? "block" : "hidden"
-          } w-full md:block md:w-auto`}
-        >
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white  md: dark:border-gray-700">
-            <li>
+      {/* Mobile Menu Dropdown */}
+      <div
+        className={`md:hidden absolute top-full left-0 w-full bg-[#030014]/95 backdrop-blur-lg border-b border-white/5 transition-all duration-300 ease-in-out overflow-hidden ${
+          menuOpen ? "max-h-96 opacity-100 py-4 shadow-xl" : "max-h-0 opacity-0 pointer-events-none"
+        }`}
+      >
+        <ul className="px-6 space-y-2">
+          {navLinks.map((link) => (
+            <li key={link.name}>
               <a
-                href="#home"
-                className="block py-2 px-3 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-black md:dark:text-blue-500"
-                aria-current="page"
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block py-2.5 px-4 text-slate-300 hover:text-white hover:bg-white/5 rounded-xl font-medium transition-all duration-200"
               >
-                Home
+                {link.name}
               </a>
             </li>
-            <li>
-              <a
-                href="#skills"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-              >
-                Skills
-              </a>
-            </li>
-            <li>
-              <a
-                href="#experience"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-              >
-                Experience
-              </a>
-            </li>
-            <li>
-              <a
-                href="#cp"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-              >
-                Problem Solving
-              </a>
-            </li>
-            <li>
-              <a
-                href="#achievements"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-              >
-                Achievements
-              </a>
-            </li>
-            <li>
-              <a
-                href="#projects"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-              >
-                Projects
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </div>
     </nav>
   );
