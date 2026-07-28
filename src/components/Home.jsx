@@ -50,22 +50,20 @@ const Home = () => {
               </span>
             </motion.h1>
 
-            <div className="h-10 sm:h-12 flex items-center text-xl sm:text-2xl font-bold text-slate-300">
+            <div className="flex items-center text-xl sm:text-2xl font-bold text-slate-300">
               <span className="mr-2">I am a</span>
-              <div className="relative overflow-hidden inline-block h-full">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={roleIndex}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent"
-                  >
-                    {roles[roleIndex]}
-                  </motion.span>
-                </AnimatePresence>
-              </div>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={roleIndex}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="inline-block bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent"
+                >
+                  {roles[roleIndex]}
+                </motion.span>
+              </AnimatePresence>
             </div>
           </div>
 
